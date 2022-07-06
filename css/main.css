@@ -16,3 +16,10 @@ body{
     height: 100vh;
     background: black;
 }
+
+#fps{
+    color: white;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}

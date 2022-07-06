@@ -1,4 +1,7 @@
 import mouse from "./mouse.js";
+import Point from "./Point.js";
+
+let points = [];
 
 const canvas = document.getElementById("canvas");
 
@@ -15,12 +18,15 @@ window.addEventListener("resize", () => {
 
 
 function animate() {
+    ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+    for (let i = 0; i <points.length; i++) {
+        points[i].draw();
+    }
     requestAnimationFrame(animate);
 }
 
+animate();
 
 canvas.addEventListener("click", () => {
-    ctx.fillStyle = "red";
-    ctx.fillRect(mouse.x, mouse.y, 10, 10);
-    ctx.fill();
+    points.push(new Point(mouse.x,mouse.y,2,"red",ctx));
 })
