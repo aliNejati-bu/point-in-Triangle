@@ -1,32 +1,25 @@
 import mouse from "./mouse.js";
 import Point from "./Point.js";
 
-let points = [];
-
 const canvas = document.getElementById("canvas");
 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 const ctx = canvas.getContext("2d");
 
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
 
 function animate() {
-    ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
-    for (let i = 0; i <points.length; i++) {
-        points[i].draw();
-    }
-    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    let p = new Point(mouse.x,mouse.y,10,"red",ctx);
+    p.draw();
+    ctx.fillStyle = "blue";
+    ctx.beginPath();
+    ctx.arc(mouse.x+100,mouse.y-100,10,0,2*Math.PI);
+    ctx.fill();
+    ctx.closePath();
+    requestAnimationFrame(animate)
 }
 
-animate();
-
-canvas.addEventListener("click", () => {
-    points.push(new Point(mouse.x,mouse.y,2,"red",ctx));
-})
+animate()

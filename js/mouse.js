@@ -1,7 +1,7 @@
 const mouse = {
     x: 0,
     y: 0
-};
+}
 
 document.body.addEventListener("mousemove", (ev) => {
     mouse.x = ev.offsetX;
